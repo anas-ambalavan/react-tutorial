@@ -1,10 +1,10 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const UserDetails = (props) => {
+const UserDetails = () => {
   const { id } = useParams();
-  //   const { userData } = props;
-  //   const { name, login, avatar_url, location, followers, company } = userData;
+
+  // { name, login, avatar_url, location, followers, company }
   return (
     <div>
       {/* <h1>
