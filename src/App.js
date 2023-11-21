@@ -24,13 +24,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route path="/" element={<Root />}>
-    <Route path="dash" element={<Contact />} >
-        <Route path="user" element={<Contact />} />
-    </Route>
-</Route>
-
-/dash/user */
-}
