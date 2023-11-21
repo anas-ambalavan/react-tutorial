@@ -11,6 +11,7 @@ const UserFunctional = ({ userData }) => {
         justifyContent: "center",
         alignItems: "center",
         margin: 10,
+        width: "300px",
       }}
     >
       <img width={150} height={150} src={avatar_url} alt="profile" />

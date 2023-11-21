@@ -14,20 +14,30 @@ const UserList = () => {
     setUserData(data);
   };
 
+  //componentDidMount + componentDidUpdate
   useEffect(() => {
+    let timer;
+    timer = setInterval(() => {
+      console.log("From user list");
+    }, 1000);
+    console.log("Mounted");
     fetchData();
+    return () => {
+      console.log("Component UnMounted"); // componentWillUnmount
+      clearInterval(timer);
+    };
   }, []);
-
-  console.log("Hello");
 
   return (
     <div>
-      <h1>UserList</h1>
-      {userData?.map((user) => (
-        <Link key={user.id} to={`/user/${user.id}`}>
-          <UserCard userData={user} />
-        </Link>
-      ))}
+      <h1>Users</h1>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)" }}>
+        {userData?.map((user) => (
+          <Link key={user.id} to={`/user/${user.login}`}>
+            <UserCard userData={user} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React from "react";
-import Sample from "./Sample";
+import { Link } from "react-router-dom";
+// import Sample from "./Sample";
 
-class User extends React.Component {
+class UserClass extends React.Component {
   constructor(props) {
     super(props);
     console.log("constructor Parent");
@@ -20,6 +21,10 @@ class User extends React.Component {
     console.log("ComponentDidUpdate");
   }
 
+  componentWillUnmount() {
+    console.log("Component unmounted from class");
+  }
+
   handleClick() {
     this.setState({ clickCount: this.state.clickCount + 1 });
   }
@@ -31,13 +36,14 @@ class User extends React.Component {
         <h1>{this.props.username}</h1>
         <button onClick={this.handleClick}>click Me</button>
         <p>{this.state.clickCount}</p>
-        <Sample />
+        <Link to={"/"}>Home</Link>
+        {/* <Sample /> */}
       </div>
     );
   }
 }
 
-export default User;
+export default UserClass;
 
 // constructor
 // componentDidMount

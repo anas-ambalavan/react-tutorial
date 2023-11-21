@@ -1,20 +1,35 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+
+const API_URL = "https://api.github.com/users/";
 
 const UserDetails = () => {
   const { id } = useParams();
+  const [userData, setUserData] = useState(null);
 
-  // { name, login, avatar_url, location, followers, company }
+  const fetchData = async () => {
+    const res = await fetch(API_URL + id);
+    const data = await res.json();
+
+    setUserData(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (!userData) {
+    return <div>Loading....</div>;
+  }
+
+  const { name, bio, login } = userData;
+
   return (
     <div>
-      {/* <h1>
-        {login}-{name}
-      </h1>
-      <img width={150} height={150} src={avatar_url} alt="profile" />
-      <p>{location}</p>
-      <p>{company}</p>
-      <p>{followers}</p> */}
-      <h1>{id}</h1>
+      <h1>UserDetails - {id}</h1>
+      <p>{name}</p>
+      <p>{bio}</p>
+      <p>{login}</p>
     </div>
   );
 };
