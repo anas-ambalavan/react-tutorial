@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
+import AppContext from "./AppContext";
+import { Link } from "react-router-dom";
 
 const API_URL = "https://api.github.com/users/";
 
-const UserDetails = () => {
+const UserDetails = (props) => {
+  console.log(props);
   const { id } = useParams();
   const [userData, setUserData] = useState(null);
 
@@ -13,6 +16,9 @@ const UserDetails = () => {
 
     setUserData(data);
   };
+
+  const app = useContext(AppContext);
+  console.log("app", app.loggedInUser);
 
   useEffect(() => {
     fetchData();
@@ -26,10 +32,20 @@ const UserDetails = () => {
 
   return (
     <div>
-      <h1>UserDetails - {id}</h1>
+      <h1>
+        UserDetails - {id} - {app.loggedInUser}
+      </h1>
       <p>{name}</p>
       <p>{bio}</p>
       <p>{login}</p>
+      <div style={{ margin: 10 }}>
+        <Link to="/">Home</Link>
+      </div>
+      <button
+        onClick={() => app.setTheme(app.theme === "light" ? "dark" : "light")}
+      >
+        Change theme
+      </button>
     </div>
   );
 };

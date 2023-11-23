@@ -1,7 +1,9 @@
 import React from "react";
 
-const UserFunctional = ({ userData }) => {
+const UserFunctional = (props) => {
+  const { userData, theme, setTheme } = props;
   const { login, avatar_url } = userData;
+
   return (
     <div
       style={{

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AppContext from "./AppContext";
 // import Sample from "./Sample";
 
 class UserClass extends React.Component {
@@ -38,6 +39,16 @@ class UserClass extends React.Component {
         <p>{this.state.clickCount}</p>
         <Link to={"/"}>Home</Link>
         {/* <Sample /> */}
+        <AppContext.Consumer>
+          {(data) => {
+            const { loggedInUser, theme } = data;
+            return (
+              <p>
+                {loggedInUser}- {theme}
+              </p>
+            );
+          }}
+        </AppContext.Consumer>
       </div>
     );
   }
